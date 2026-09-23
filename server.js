@@ -13,7 +13,10 @@ app.get('/', (req, res) => {
 app.get('/new-route', (req, res ) => {
     res.send("This is a new route");
 });
+app.get('/about-page', (req,res) => {
+    res.send("This is the about page")
 
+});
 // Define the port number the server will listen on
 const PORT = 3000;
 
