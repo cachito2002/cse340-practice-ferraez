@@ -31,7 +31,9 @@ app.get('/student', (req, res ) => {
     const id = 28178;
     const email = "eric234@gmail.com"
     const address = "54 W 1st E, Rocky Rd, TX 83940"
-    res.render('products', {name},{id},{email},{address});
+    const title = "Student Record"
+    res.render('student', {name, id, email, address, title});
+    
 });
 
 // Define the port number the server will listen on
