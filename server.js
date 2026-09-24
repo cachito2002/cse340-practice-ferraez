@@ -1,10 +1,15 @@
 // Import express using ESM syntax
 import express from 'express';
+import { fileURLToPath } from 'node:url';
+import path from 'path';
 
 // Create an instance of an Express application
 const app = express();
+app.use(express.static(path.join(__dirname, "public")));
 
 const name = process.env.NAME;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(_filename);
 
 // Define a route handler for the root URL ('/')
 app.get('/', (req, res) => {
@@ -18,7 +23,7 @@ app.get('/about-page', (req,res) => {
 
 });
 // Define the port number the server will listen on
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Start the server and listen on the specified port
 app.listen(PORT, () => {
