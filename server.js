@@ -5,23 +5,35 @@ import path from 'path';
 
 // Create an instance of an Express application
 const app = express();
-app.use(express.static(path.join(__dirname, "public")));
-
-const name = process.env.NAME;
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(_filename);
+const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname,'src/views'));
+
+
 
 // Define a route handler for the root URL ('/')
 app.get('/', (req, res) => {
-    res.send(`Welcome, ${name}!`);
+    const title = "Welcome Home Chamo";
+    res.render('home', {title});
 });
-app.get('/new-route', (req, res ) => {
-    res.send("This is a new route");
+app.get('/about', (req, res ) => {
+    const title = "About Me Page Chatel";
+    res.render('about', {title});
 });
-app.get('/about-page', (req,res) => {
-    res.send("This is the about page")
+app.get('/products', (req, res ) => {
+    const title = "Products You Might Like";
+    res.render('products', {title});
+});
+app.get('/student', (req, res ) => {
+    const name = "Eric";
+    const id = 28178;
+    const email = "eric234@gmail.com"
+    const address = "54 W 1st E, Rocky Rd, TX 83940"
+    res.render('products', {name},{id},{email},{address});
+});
 
-});
 // Define the port number the server will listen on
 const PORT = process.env.PORT || 3000;
 
